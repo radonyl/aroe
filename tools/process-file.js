@@ -18,9 +18,13 @@ var files = [
 ];
 
 files.forEach(function (f) {
-    var fileContent = iconv.fromEncoding(fs.readFileSync(f.source), 'GBK').split('\n');
+    var fileContent = iconv.fromEncoding(fs.readFileSync(f.source), 'GBK').trim().split('\n');
 
-    fileContent.splice(0, 3);
+    if (!fileContent[0].includes('[I]')) {
+        console.log("Remove header");
+        fileContent.splice(0, 3);
+    }
+    
 
     var questions = generateQuestions(fileContent);
 
@@ -37,7 +41,7 @@ function generateQuestions(rawData){
         var answerB = rawData[i++].replace('[B]', '').replace('\r', '');
         var answerC = rawData[i++].replace('[C]', '').replace('\r', '');
         var answerD = rawData[i++].replace('[D]', '').replace('\r', '');
-        var picture = rawData[i++].replace('[P]', '').replace('\r', '').replace('jpg', 'gif');
+        var picture = rawData[i++].replace('[P]', '').replace('\r', '');//.replace('jpg', 'gif');
         
         var question = {
             "id": id,
@@ -73,7 +77,8 @@ function generateQuestions(rawData){
 
 function getPicture(filename){
     if(filename != ''){
-        return 'data:image/gif;base64,' + fs.readFileSync(path.join('img', filename)).toString('base64');
+        var ext = filename.split('.').pop();
+        return 'data:image/' + ext + ';base64,' + fs.readFileSync(path.join('img', filename)).toString('base64');
     }
 
     return filename;

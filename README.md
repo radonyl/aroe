@@ -12,7 +12,7 @@
 
 ## 题库
 
-题库按照 [CRAC 2017/10/31的题库文件](http://www.crac.org.cn/News/Detail?ID=1862)做成, 目前支持A、B、C三类操作证的题库。
+题库按照 [CRAC 2021/10/22的题库文件](http://www.crac.org.cn/News/Detail?ID=3dbd1bc7f36443958e1872234f42464f)做成, 目前支持A、B、C三类操作证的题库。
 
 ## 支持的浏览器
 
